@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: web
+  role_name: package-update
   # galaxy_name: web
   author: grzegorzfranus
   description: aaaaaaaa

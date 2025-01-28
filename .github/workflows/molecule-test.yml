@@ -26,4 +26,4 @@ jobs:
 
     - name: Run Molecule Tests
       run: |
-        molecule test
+        source ~/.molecule-venv/bin/activate && molecule test

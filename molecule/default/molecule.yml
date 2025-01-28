@@ -1,0 +1,56 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+platforms:
+  - name: ubuntu24
+    image: "ubuntu:24.04"
+    dockerfile: ./Dockerfile.ubuntu  # Use custom Dockerfile
+    privileged: false
+    pre_build_image: false
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    ansible_extra_vars:
+      ansible_python_interpreter: /usr/bin/python3
+  - name: centos9
+    image: "quay.io/centos/centos:stream9"
+    dockerfile: ./Dockerfile.ubuntu  # Use custom Dockerfile
+    privileged: false
+    pre_build_image: false
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    ansible_extra_vars:
+      ansible_python_interpreter: /usr/bin/python3
+
+provisioner:
+  name: ansible
+  playbooks:
+    converge: main.yml
+  # roles_path: /home/gfranus/ansible/roles/
+# scenario:
+#   name: default
+#   test_sequence:
+#     - lint
+#     - dependency
+#     - create
+#     - prepare
+#     - converge
+#     - verify
+#     - destroy
+# Molecule handles role testing by invoking configurable verifiers.
+verifier:
+  name: testinfra
+# Lint options
+# lint: |
+#   set -e
+#   yamllint .
+#   ansible-lint

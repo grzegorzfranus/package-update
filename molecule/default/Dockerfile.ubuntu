@@ -1,0 +1,17 @@
+# using ubuntu LTS version
+FROM ubuntu:24.04
+
+# avoid stuck build due to user prompt
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Update package list and install Python 3
+RUN apt-get update && \
+    apt-get install -y python3 && \
+    apt-get clean
+
+# Install system dependencies for Ansible
+RUN apt-get install -y sshpass sudo && \
+    apt-get clean
+
+# Set environment variables
+ENV ANSIBLE_HOST_KEY_CHECKING=False

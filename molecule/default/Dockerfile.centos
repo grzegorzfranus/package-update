@@ -1,0 +1,14 @@
+# using offical version
+FROM quay.io/centos/centos:stream9
+
+# Update package list and install Python 3
+RUN dnf update -y && \
+    dnf install -y python3 && \
+    dnf clean all
+
+# Install system dependencies for Ansible
+RUN dnf install -y sshpass sudo && \
+    dnf clean all
+    
+# Set environment variables
+ENV ANSIBLE_HOST_KEY_CHECKING=False

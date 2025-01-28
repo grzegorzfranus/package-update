@@ -24,6 +24,6 @@ jobs:
       run: |
         pip3 install molecule[docker] ansible-lint testinfra yamllint
 
-    # - name: Run Molecule Tests
-    #   run: |
-    #     molecule test
+    - name: Run Molecule Tests
+      run: |
+        molecule test

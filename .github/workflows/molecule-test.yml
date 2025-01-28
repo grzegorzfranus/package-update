@@ -9,6 +9,14 @@ on:
       - main
 
 jobs:
+  lint:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: ansible-lint
+        uses: ansible-community/ansible-lint-action@main
+        
   test:
     runs-on: self-hosted
     steps:

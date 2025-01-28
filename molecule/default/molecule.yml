@@ -50,7 +50,7 @@ provisioner:
 verifier:
   name: testinfra
 # Lint options
-# lint: |
-#   set -e
-#   yamllint .
-#   ansible-lint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
